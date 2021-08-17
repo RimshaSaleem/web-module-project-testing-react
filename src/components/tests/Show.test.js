@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Show from './../Show';
+import Episode from '../Episode';
 
 const testShow = {
     //add in approprate test data structure here.
@@ -52,9 +53,18 @@ test('renders same number of options seasons are passed in', ()=>{
 });
 
 test('handleSelect is called when an season is selected', () => {
+    const fakeGetData = jest.fn();
+    render(<Show show={testShow} selectedSeason={'none'} handleSelect={fakeGetData} />);
+    const add = screen.getByRole('combobox');
+    const seasons = screen.queryAllByTestId('season-option');
+    userEvent.selectOptions(add, seasons[2]);
+    expect(fakeGetData).toBeCalledTimes(1);
+
+
 });
 
 test('component renders when no seasons are selected and when rerenders with a season passed in', () => {
+    render(<Show show={testShow} selectedSeason={'none'} />);
 });
 
 //Tasks:
