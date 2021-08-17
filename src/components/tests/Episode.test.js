@@ -37,9 +37,12 @@ test("renders the summury test passed as prop", ()=>{
 });
 
 test("renders default image when image is not defined", ()=>{
-    render(<Episode episode ={testEpisode} />);
+    render(<Episode episode ={testEpisodeWithoutImage} />);
+
+    const image = screen.queryByAltText('./stranger_things.png');
+    expect (image).toBeTruthy();
     
-})
+});
 
 //Tasks
 //1. Complete a test that shows the Episode component renders. Pass in the provided example episode data as a test prop.
