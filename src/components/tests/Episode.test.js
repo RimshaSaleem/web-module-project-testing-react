@@ -19,7 +19,7 @@ const testEpisodeWithoutImage = {
     image:null,
     season:1,
     number:1,
-    summary:'Its a summary',
+    summary:"Its a summary",
     runtime: 1
 }
 
@@ -29,10 +29,15 @@ test("renders without error", () => {
 
 
 test("renders the summury test passed as prop", ()=>{
-    render(<Episode episode ={testEpisode} />)
+    render(<Episode episode ={testEpisode} />);
+    const result = screen.getByText(/its a summary/i);
+   expect(result).toBeInTheDocument();
+   expect(result).toBeTruthy();
+   expect(result).toHaveTextContent(/its a summary/i);
 });
 
 test("renders default image when image is not defined", ()=>{
+    render(<Episode episode ={testEpisode} />);
     
 })
 
