@@ -6,6 +6,18 @@ import Show from './../Show';
 
 const testShow = {
     //add in approprate test data structure here.
+    name :'',
+    summary:'',
+     seasons:[
+         {
+             id:'1',
+             name:'Season 1',
+             episodes:[]
+
+
+         },
+     ]
+
 }
 
 test('renders testShow and no selected Season without errors', ()=>{
