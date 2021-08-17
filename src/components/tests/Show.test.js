@@ -16,6 +16,21 @@ const testShow = {
 
 
          },
+         {
+            id:'2',
+            name:'Season 2',
+            episodes:[]
+
+
+        },
+        {
+            id:'3',
+            name:'Season 3',
+            episodes:[]
+
+
+        },
+
      ]
 
 }
