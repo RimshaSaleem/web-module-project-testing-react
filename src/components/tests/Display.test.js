@@ -21,7 +21,7 @@ test('Show component renders when get a show data button is clicked', async () =
     const data = await screen.findByTestId('show-container');
     expect(data).toBeInTheDocument();
 });
-test('when fetch button is pressed, select options rendered', async () => {
+test('When show data button is pressed, select options rendered', async () => {
     render(<Display/>);
     fetchShow.mockResolvedValueOnce(testShow);
     const button = screen.getByRole('button');    
@@ -30,7 +30,7 @@ test('when fetch button is pressed, select options rendered', async () => {
     expect(seasons).toHaveLength(3);
 });
 
-test('show data button is pressed, display function is called.', async () => {
+test(' When show data button is pressed, display function is called.', async () => {
     const fakeGetData = jest.fn();
     render(<Display displayFunc={fakeGetData} />);
     fetchShow.mockResolvedValueOnce(testShow);
