@@ -1,5 +1,45 @@
 
+import React from 'react';
+import { getByRole, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import Display from '../Display';
+import fetchShow from '../../api/fetchShow';
+// import { getByRole } from '@testing-library/react';
+import { testShow } from './Show.test';
+jest.mock('../../api/fetchShow');
 
+
+test("renders without error", () => {
+    render(<Display />);
+});
+
+test('Show component renders when get a show data button is clicked', async () => {
+    render(<Display/>);
+    fetchShow.mockResolvedValueOnce(testShow);
+    const button = screen.getByRole('button');    
+    userEvent.click(button);
+    const data = await screen.findByTestId('show-container');
+    expect(data).toBeInTheDocument();
+});
+test('When show data button is pressed, select options rendered', async () => {
+    render(<Display/>);
+    fetchShow.mockResolvedValueOnce(testShow);
+    const button = screen.getByRole('button');    
+    userEvent.click(button);
+    const seasons = await screen.findAllByTestId('season-option');
+    expect(seasons).toHaveLength(3);
+});
+
+test(' When show data button is pressed, display function is called.', async () => {
+    const fakeGetData = jest.fn();
+    render(<Display displayFunc={fakeGetData} />);
+    fetchShow.mockResolvedValueOnce(testShow);
+    const button = screen.getByRole('button');
+    userEvent.click(button);
+    const data = await screen.findByTestId('show-container');
+    expect(data).toBeInTheDocument();
+    expect(fakeGetData).toBeCalledTimes(1);
+});
 
 
 
